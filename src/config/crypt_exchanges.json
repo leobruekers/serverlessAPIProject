@@ -1,0 +1,22 @@
+{
+  "exchanges": [
+    {
+      "url": "https://cex.io/api/last_price/BTC/USD",
+      "field": "lprice",
+      "header": "",
+      "body": ""
+    },
+    {
+      "url": "https://www.mercadobitcoin.net/api/BTC/ticker/",
+      "field": "latest",
+      "header": "",
+      "body": ""
+    },
+    {
+      "url": "fill_with_url",
+      "field": "latest",
+      "header": "",
+      "body": ""
+    }
+  ]
+}
