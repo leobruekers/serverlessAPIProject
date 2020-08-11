@@ -9,7 +9,7 @@ provider:
 
 functions:
   getAverageTickers:
-    handler: lambda_functions.cryptocurrency.handler.getAverageTickers
+    handler: src/lambda_functions/cryptocurrency/handler.getAverageTickers
     name: ${opt:stage, 'dev'}-getAverageTickers
     events:
       - http:
@@ -17,7 +17,7 @@ functions:
           method: get
 
   sendTickersViaEmail:
-    handler: lambda_functions.email.handler.sendTickersViaEmail
+    handler: src/lambda_functions/email/handler.sendTickersViaEmail
     name: ${opt:stage, 'dev'}-sendTickersViaEmail
     events:
       - http:
