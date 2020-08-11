@@ -34,15 +34,11 @@ Config directory will be responsible for holding all configuration. For now, the
 
 ### **Lambda_functions:**
 
-Lambda functions folder, will be responsible for holding the code present on lambda function. The code is separated by crytocurrency interactions and email interactions. Inside each folder, there is a handler.js and an utils.js. The handler contains the main function as simple as possible while the utils will contain the business logic.
+Lambda functions folder, will be responsible for holding the code present on lambda function. The code is separated by crytocurrency interactions and email interactions. Inside each folder, there is a handler.js and an utils.js. The handler contains the main function as simple as possible while the utils will contain the business logic. Besides of this two scripts there is also a utils.test script for testing porpouses.
 
 ### **Serverless.yml:**
 
 Serverless.yml is the file responsible for API and lambda function management on AWS.
-
-### **Test:**
-
-Test directory contains the unit tests. It follow an structure similar to lambda functions folder.
 
 ## Deploying:
 
