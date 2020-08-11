@@ -1,3 +1,4 @@
+"use strict";
 const utils = require("./utils");
 
 module.exports.getAverageTickers = async (event, context, callback) => {

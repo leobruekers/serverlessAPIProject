@@ -1,19 +1,18 @@
 "use strict";
+const utils = require("./utils");
 
-module.exports.sendTickersViaEmail = async (event) => {
-  // TODO:
-  // - call get tickers function
-  // - send email
+module.exports.getAverageTickers = async (event, context, callback) => {
+  try {
+    let tickersAverage = await utils.getTickersAverage();
 
-  return {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: "sendTickersViaEmail called successfully",
-        input: event,
-      },
-      null,
-      2
-    ),
-  };
+    callback(null, {
+      statusCode: 200,
+      body: tickersAverage,
+    });
+  } catch (error) {
+    callback(null, {
+      statusCode: 500,
+      body: null,
+    });
+  }
 };
