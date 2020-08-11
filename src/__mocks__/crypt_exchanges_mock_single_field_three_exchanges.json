@@ -1,0 +1,19 @@
+{
+  "exchanges": [
+    {
+      "url": "basicOneField",
+      "field": "field",
+      "header": ""
+    },
+    {
+      "url": "basicOneField",
+      "field": "field",
+      "header": ""
+    },
+    {
+      "url": "basicOneField",
+      "field": "field",
+      "header": ""
+    }
+  ]
+}

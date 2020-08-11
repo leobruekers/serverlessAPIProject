@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "description": "One this project will be created an API with two different methods:",
   "dependencies": {
-    "express": "^4.17.1",
     "node-fetch": "^2.6.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jest": "^26.3.0"
+  },
   "scripts": {
-    "test": "test"
+    "test": "jest"
   },
   "repository": {
     "type": "git",

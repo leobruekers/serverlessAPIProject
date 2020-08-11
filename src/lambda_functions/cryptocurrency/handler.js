@@ -1,17 +1,17 @@
-"use strict";
+const utils = require("./utils");
 
-module.exports.getAverageTickers = async (event) => {
-  // TODO: write the code to get average tickers
+module.exports.getAverageTickers = async (event, context, callback) => {
+  try {
+    let tickersAverage = await utils.getTickersAverage();
 
-  return {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: "getAverageTickers called successfully",
-        input: event,
-      },
-      null,
-      2
-    ),
-  };
+    callback(null, {
+      statusCode: 200,
+      body: tickersAverage,
+    });
+  } catch (error) {
+    callback(null, {
+      statusCode: 500,
+      body: null,
+    });
+  }
 };

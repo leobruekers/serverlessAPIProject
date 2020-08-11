@@ -1,0 +1,14 @@
+{
+  "exchanges": [
+    {
+      "url": "basicOneField",
+      "field": "field",
+      "header": ""
+    },
+    {
+      "url": "childField",
+      "field": "parent##child",
+      "header": ""
+    }
+  ]
+}
