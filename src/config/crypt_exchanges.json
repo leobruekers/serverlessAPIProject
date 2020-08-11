@@ -1,0 +1,19 @@
+{
+  "exchanges": [
+    {
+      "url": "https://cex.io/api/last_price/BTC/USD",
+      "field": "lprice",
+      "header": ""
+    },
+    {
+      "url": "https://api.cryptonator.com/api/ticker/btc-usd",
+      "field": "ticker##price",
+      "header": ""
+    },
+    {
+      "url": "https://api-pub.bitfinex.com/v2/tickers?symbols=tBTCUSD",
+      "field": "0##1",
+      "header": ""
+    }
+  ]
+}

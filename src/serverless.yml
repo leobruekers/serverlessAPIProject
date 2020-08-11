@@ -1,0 +1,27 @@
+service: serverless-api-project
+org: leobruekers
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: us-east-1
+
+functions:
+  getAverageTickers:
+    handler: lambda_functions.cryptocurrency.handler.getAverageTickers
+    name: ${opt:stage, 'dev'}-getAverageTickers
+    events:
+      - http:
+          path: cryptocurrency/getAverageTickers
+          method: get
+
+  sendTickersViaEmail:
+    handler: lambda_functions.email.handler.sendTickersViaEmail
+    name: ${opt:stage, 'dev'}-sendTickersViaEmail
+    events:
+      - http:
+          path: email/sendTickersViaEmail
+          method: post
+    environment:
+      getAverageTickersFunctionName: ${opt:stage, 'dev'}-getAverageTickers
