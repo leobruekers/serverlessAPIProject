@@ -1,0 +1,23 @@
+{
+  "name": "serverlessapiproject",
+  "version": "1.0.0",
+  "description": "One this project will be created an API with two different methods:",
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leobruekers/serverlessAPIProject.git"
+  },
+  "author": "leobruekers",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leobruekers/serverlessAPIProject/issues"
+  },
+  "homepage": "https://github.com/leobruekers/serverlessAPIProject#readme"
+}
