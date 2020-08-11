@@ -3,20 +3,17 @@
     {
       "url": "https://cex.io/api/last_price/BTC/USD",
       "field": "lprice",
-      "header": "",
-      "body": ""
+      "header": ""
     },
     {
-      "url": "https://www.mercadobitcoin.net/api/BTC/ticker/",
-      "field": "latest",
-      "header": "",
-      "body": ""
+      "url": "https://api.cryptonator.com/api/ticker/btc-usd",
+      "field": "ticker##price",
+      "header": ""
     },
     {
-      "url": "fill_with_url",
-      "field": "latest",
-      "header": "",
-      "body": ""
+      "url": "https://api-pub.bitfinex.com/v2/tickers?symbols=tBTCUSD",
+      "field": "0##1",
+      "header": ""
     }
   ]
 }
