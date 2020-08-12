@@ -1,18 +1,34 @@
 "use strict";
 const utils = require("./utils");
 
-module.exports.getAverageTickers = async (event, context, callback) => {
+module.exports.sendTickersViaEmail = async (event) => {
   try {
-    let tickersAverage = await utils.getTickersAverage();
+    let result = await utils.sendTickersViaEmail();
 
-    callback(null, {
+    console.log("Chegou aqui 7.");
+
+    return {
       statusCode: 200,
-      body: tickersAverage,
-    });
+      body: JSON.stringify(
+        {
+          message: result,
+          input: event,
+        },
+        null,
+        2
+      ),
+    };
   } catch (error) {
-    callback(null, {
+    return {
       statusCode: 500,
-      body: null,
-    });
+      body: JSON.stringify(
+        {
+          message: error,
+          input: event,
+        },
+        null,
+        2
+      ),
+    };
   }
 };

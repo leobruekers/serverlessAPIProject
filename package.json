@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "One this project will be created an API with two different methods:",
   "dependencies": {
+    "aws-sdk": "^2.731.0",
+    "jest": "^26.3.0",
+    "mailgun-js": "^0.22.0",
     "node-fetch": "^2.6.0"
   },
-  "devDependencies": {
-    "jest": "^26.3.0"
-  },
+  "devDependencies": {},
   "scripts": {
     "test": "jest"
   },

@@ -12,7 +12,7 @@ module.exports.getAverageTickers = async (event, context, callback) => {
   } catch (error) {
     callback(null, {
       statusCode: 500,
-      body: null,
+      body: error,
     });
   }
 };

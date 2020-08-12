@@ -1,7 +1,6 @@
 "use strict";
 const utils = require("./utils");
 const aws_services = require("../../utils/aws_services");
-const mg = require("mailgun-js");
 
 jest.mock("../../utils/aws_services");
 
