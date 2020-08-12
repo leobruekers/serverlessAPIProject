@@ -51,12 +51,14 @@ Serverless.yml is the file responsible for API and lambda function management on
 
 ## Backlog
 
+- Define architecture changes.
 - Move configuration to Parameter Store.
   - configuration file path.
   - Parameters from Mailgun.
 - Investigate if serverless allows to configure the files to be pushed to lambda function in order to avoid heavy ones.
 - Move customization for emailing to guarantee easier access.
 - Remove AWS configuration from aws_services.
+- Write more tests.
 
 ## Deploying:
 
