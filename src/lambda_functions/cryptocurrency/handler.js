@@ -3,7 +3,7 @@ const utils = require("./utils");
 
 module.exports.getAverageTickers = async (event, context) => {
   try {
-    let tickersAverage = await utils.getTickersAverage();
+    const tickersAverage = await utils.getTickersAverage();
 
     const response = {
       statusCode: 200,
