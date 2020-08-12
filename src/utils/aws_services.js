@@ -15,13 +15,19 @@ module.exports.callLambdaFunction = async function (
     Payload: payload,
   };
 
-  lambda.invoke(params, function (error, data) {
-    if (error) {
-      console.error(JSON.stringify(error));
-      return new Error(`Error printing messages: ${JSON.stringify(error)}`);
-    } else if (data) {
-      console.log(data);
-      return data;
-    }
-  });
+  let result = await lambda.invoke(params).promise();
+
+  return result;
+
+  // lambda
+  //   .invoke(params, function (error, data) {
+  //     if (error) {
+  //       console.error(JSON.stringify(error));
+  //       return new Error(`Error printing messages: ${JSON.stringify(error)}`);
+  //     } else if (data) {
+  //       console.log(data);
+  //       return data;
+  //     }
+  //   })
+  //   .promise();
 };
