@@ -6,6 +6,11 @@ provider:
   runtime: nodejs12.x
   stage: dev
   region: us-east-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - lambda:InvokeFunction
+      Resource: "*"
 
 functions:
   getAverageTickers:
@@ -24,4 +29,11 @@ functions:
           path: email/sendTickersViaEmail
           method: post
     environment:
-      getAverageTickersFunctionName: ${opt:stage, 'dev'}-getAverageTickers
+      GET_AVERAGE_TICKER_FN_NAME: "https://3fxul40sve.execute-api.us-east-1.amazonaws.com/dev/cryptocurrency/getAverageTickers"
+      GET_AVERAGE_TICKER_FN_NAME2: ${opt:stage, 'dev'}-getAverageTickers
+      MAILGUN_API_KEY: "d56fb7f21015124aa70e65a093389faf-07e45e2a-9a7919ee"
+      MAILGUN_DOMAIN: "sandbox9c37befddffb4b4f816031a1996a2578.mailgun.org"
+      SENDER: "leobruekers@gmail.com"
+      RECIPIENTS: "leobruekers@gmail.com"
+      SUBJECT: "BTC average price"
+      TEXT: "Hello,\n\nThe average price of BTC is ##price##.\n\nKind regards,\nYour prefered service."

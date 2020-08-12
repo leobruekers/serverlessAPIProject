@@ -1,19 +1,20 @@
 "use strict";
+const utils = require("./utils");
 
 module.exports.sendTickersViaEmail = async (event) => {
-  // TODO:
-  // - call get tickers function
-  // - send email
+  try {
+    let result = await utils.sendTickersViaEmail();
 
-  return {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: "sendTickersViaEmail called successfully",
-        input: event,
-      },
-      null,
-      2
-    ),
-  };
+    const response = {
+      statusCode: 200,
+      body: JSON.stringify({ message: result }),
+    };
+    return response;
+  } catch (error) {
+    const response = {
+      statusCode: 500,
+      body: JSON.stringify({ message: error }),
+    };
+    return response;
+  }
 };
