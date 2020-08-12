@@ -3,31 +3,38 @@ const aws_services = require("../../utils/aws_services");
 const fetch = require("node-fetch");
 
 module.exports.sendTickersViaEmail = async function () {
-  let averagePrice = await aws_services.callLambdaFunction(
+  const averagePrice = await aws_services.callLambdaFunction(
     process.env.GET_AVERAGE_TICKER_FN_NAME2
   );
-  let price = JSON.parse(JSON.parse(averagePrice["Payload"])["body"])["price"];
-  console.log(price);
+  try {
+    const price = JSON.parse(JSON.parse(averagePrice["Payload"])["body"])[
+      "price"
+    ];
+    console.log(price);
 
-  var api_key = process.env.MAILGUN_API_KEY;
-  var domain = process.env.MAILGUN_DOMAIN;
-  var sender = process.env.SENDER;
-  var recipients = process.env.RECIPIENTS;
-  var subject = process.env.SUBJECT;
-  var text =
-    process.env.TEXT != null
-      ? process.env.TEXT.toString().replace("##price##", price.toString())
-      : null;
+    const api_key = process.env.MAILGUN_API_KEY;
+    const domain = process.env.MAILGUN_DOMAIN;
+    const sender = process.env.SENDER;
+    const recipients = process.env.RECIPIENTS;
+    const subject = process.env.SUBJECT;
+    const text =
+      process.env.TEXT != null
+        ? process.env.TEXT.toString().replace("##price##", price.toString())
+        : null;
 
-  let result = await sendEmail(
-    api_key,
-    domain,
-    sender,
-    recipients,
-    subject,
-    text
-  );
-  return { price, result };
+    const result = await sendEmail(
+      api_key,
+      domain,
+      sender,
+      recipients,
+      subject,
+      text
+    );
+    return { price, result };
+  } catch (error) {
+    console.log("Error while running send email core.");
+    console.log(error);
+  }
 };
 
 async function sendEmail(
@@ -38,27 +45,28 @@ async function sendEmail(
   subject = "BTC average price",
   text = "Base text"
 ) {
-  var mailgun = require("mailgun-js")({ apiKey: api_key, domain: domain });
-
-  console.log(mailgun);
-
-  var data = {
-    from: sender,
-    to: recipients,
-    subject: subject,
-    text: text,
-  };
-
-  console.log(data);
-
-  return new Promise(function (resolve, reject) {
-    mailgun.messages().send(data, function (error, body) {
-      if (body) {
-        console.log(body);
-        resolve(body);
-      } else if (error) {
-        reject(error);
-      }
+  try {
+    const mailgun = require("mailgun-js")({ apiKey: api_key, domain: domain });
+    console.log(mailgun);
+    const data = {
+      from: sender,
+      to: recipients,
+      subject: subject,
+      text: text,
+    };
+    console.log(data);
+    return new Promise(function (resolve, reject) {
+      mailgun.messages().send(data, function (error, body) {
+        if (body) {
+          console.log(body);
+          resolve(body);
+        } else if (error) {
+          reject(error);
+        }
+      });
     });
-  });
+  } catch (error) {
+    console.log("Error while sending email with mailgun");
+    console.log(error);
+  }
 }

@@ -3,7 +3,7 @@ const utils = require("./utils");
 
 module.exports.sendTickersViaEmail = async (event) => {
   try {
-    let result = await utils.sendTickersViaEmail();
+    const result = await utils.sendTickersViaEmail();
 
     const response = {
       statusCode: 200,
