@@ -3,20 +3,11 @@ const aws_services = require("../../utils/aws_services");
 const fetch = require("node-fetch");
 
 module.exports.sendTickersViaEmail = async function () {
-  let averagePrice2 = await aws_services.callLambdaFunction(
+  let averagePrice = await aws_services.callLambdaFunction(
     process.env.GET_AVERAGE_TICKER_FN_NAME2
   );
-  console.log("LOG1 " + averagePrice2);
-  let a = averagePrice2["Payload"];
-  console.log(a);
-
-  // let a = JSON.parse(averagePrice2);
-  // console.log(a);
-  // let m = JSON.parse(a).message;
-  // console.log(m);
-
-  let averagePrice = await fetch(process.env.GET_AVERAGE_TICKER_FN_NAME);
-  console.log(averagePrice);
+  let price = JSON.parse(JSON.parse(averagePrice["Payload"])["body"])["price"];
+  console.log(price);
 
   var api_key = process.env.MAILGUN_API_KEY;
   var domain = process.env.MAILGUN_DOMAIN;
@@ -25,14 +16,18 @@ module.exports.sendTickersViaEmail = async function () {
   var subject = process.env.SUBJECT;
   var text =
     process.env.TEXT != null
-      ? process.env.TEXT.toString().replace(
-          "##price##",
-          averagePrice.toString()
-        )
+      ? process.env.TEXT.toString().replace("##price##", price.toString())
       : null;
 
-  //sendEmail();
-  return averagePrice;
+  let result = await sendEmail(
+    api_key,
+    domain,
+    sender,
+    recipients,
+    subject,
+    text
+  );
+  return { price, result };
 };
 
 async function sendEmail(
@@ -56,14 +51,14 @@ async function sendEmail(
 
   console.log(data);
 
-  let result = await mailgun.messages().send(data, function (error, body) {
-    if (error) {
-      console.log(error);
-      return error;
-    } else {
-      console.log(body);
-      return body;
-    }
+  return new Promise(function (resolve, reject) {
+    mailgun.messages().send(data, function (error, body) {
+      if (body) {
+        console.log(body);
+        resolve(body);
+      } else if (error) {
+        reject(error);
+      }
+    });
   });
-  console.log(result);
 }
