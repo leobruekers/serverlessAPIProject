@@ -49,6 +49,15 @@ The utils folder stands for utilities. For now, the only utility present is aws_
 
 Serverless.yml is the file responsible for API and lambda function management on AWS.
 
+## Backlog
+
+- Move configuration to Parameter Store.
+  - configuration file path.
+  - Parameters from Mailgun.
+- Investigate if serverless allows to configure the files to be pushed to lambda function in order to avoid heavy ones.
+- Move customization for emailing to guarantee easier access.
+- Remove AWS configuration from aws_services.
+
 ## Deploying:
 
 - Clone the project: **git clone https://github.com/leobruekers/serverlessAPIProject.git**
