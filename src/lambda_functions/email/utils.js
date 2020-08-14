@@ -55,8 +55,8 @@ async function sendEmail(
       text: text,
     };
     console.log(data);
-    return new Promise(function (resolve, reject) {
-      mailgun.messages().send(data, function (error, body) {
+    return new Promise((resolve, reject) => {
+      mailgun.messages().send(data, (error, body) => {
         if (body) {
           console.log(body);
           resolve(body);

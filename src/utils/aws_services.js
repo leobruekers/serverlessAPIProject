@@ -16,7 +16,7 @@ module.exports.callLambdaFunction = async function (
       Payload: payload,
     };
 
-    const result = await lambda.invoke(params).promise();
+    const result = lambda.invoke(params).promise();
 
     return result;
   } catch (error) {
