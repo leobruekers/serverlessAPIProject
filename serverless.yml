@@ -5,7 +5,7 @@ package:
   individually: true
   excludeDevDependencies: false
   exclude:
-    - node_modules/**
+    - ./**
 
 plugins:
   - serverless-plugin-include-dependencies
@@ -34,6 +34,10 @@ functions:
       - http:
           path: cryptocurrency/getAverageTickers
           method: get
+    package:
+      exclude:
+        ## adding configuration file
+        - "!src/config/**"
 
   sendTickersViaEmail:
     handler: src/lambda_functions/email/handler.sendTickersViaEmail
