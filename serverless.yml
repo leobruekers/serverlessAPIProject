@@ -1,6 +1,20 @@
 service: serverless-api-project
 org: leobruekers
 
+package:
+  individually: true
+  excludeDevDependencies: false
+  exclude:
+    - node_modules/**
+
+plugins:
+  - serverless-plugin-include-dependencies
+
+custom:
+  includeDependencies:
+    always:
+      - "src/lib/**"
+
 provider:
   name: aws
   runtime: nodejs12.x
