@@ -1,10 +1,15 @@
 "use strict";
-const aws_services = require("../../utils/aws_services");
+const AWSServices = require("../../utils/aws_services");
 const fetch = require("node-fetch");
 
 module.exports.sendTickersViaEmail = async function () {
-  const averagePrice = await aws_services.callLambdaFunction(
-    process.env.GET_AVERAGE_TICKER_FN_NAME2
+  const region = process.env.AWS_REGION;
+  console.log(region);
+  const awsServices = new AWSServices(region);
+  console.log("Aqui");
+  console.log(awsServices);
+  const averagePrice = await awsServices.callLambdaFunction(
+    process.env.GET_AVERAGE_TICKER_FN_NAME
   );
   try {
     const price = JSON.parse(JSON.parse(averagePrice["Payload"])["body"])[
