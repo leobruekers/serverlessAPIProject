@@ -24,6 +24,7 @@ provider:
     - Effect: Allow
       Action:
         - lambda:InvokeFunction
+        - kms:*
       Resource: "*"
 
 functions:
@@ -47,10 +48,9 @@ functions:
           path: email/sendTickersViaEmail
           method: post
     environment:
-      GET_AVERAGE_TICKER_FN_NAME: "https://3fxul40sve.execute-api.us-east-1.amazonaws.com/dev/cryptocurrency/getAverageTickers"
-      GET_AVERAGE_TICKER_FN_NAME2: ${opt:stage, 'dev'}-getAverageTickers
-      MAILGUN_API_KEY: "d56fb7f21015124aa70e65a093389faf-07e45e2a-9a7919ee"
-      MAILGUN_DOMAIN: "sandbox9c37befddffb4b4f816031a1996a2578.mailgun.org"
+      MAILGUN_API_KEY: ${ssm:mailgun_api_key}
+      MAILGUN_DOMAIN: ${ssm:mailgun_domain}
+      GET_AVERAGE_TICKER_FN_NAME: ${opt:stage, 'dev'}-getAverageTickers
       SENDER: "leobruekers@gmail.com"
       RECIPIENTS: "leobruekers@gmail.com"
       SUBJECT: "BTC average price"
