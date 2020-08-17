@@ -24,7 +24,7 @@ provider:
     - Effect: Allow
       Action:
         - lambda:InvokeFunction
-        - kms:Decrypt
+        - kms:*
       Resource: "*"
 
 functions:
