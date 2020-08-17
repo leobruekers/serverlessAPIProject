@@ -20,6 +20,8 @@ The code will be structured as followed:
 - src
   - config
     - crypt_exchanges.json
+  - infra
+    - deploy.sh
   - lambda_functions
     - cryptocurrency
       - handler.js
@@ -36,6 +38,10 @@ The code will be structured as followed:
 ### **Config:**
 
 Config directory will be responsible for holding all configuration. For now, the only existing configuration is the crypt_exchanges.json, that contains the information needed to get BTC price.
+
+### **Infra:**
+
+Infra directory will be responsible for holding the scripts related to infrastructure. For now, it only contains the script to deploy SSM parameters and the service.
 
 ### **Lambda_functions:**
 
@@ -54,18 +60,33 @@ Serverless.yml is the file responsible for API and lambda function management on
 - Define architecture changes.
 - Move configuration to Parameter Store.
   - configuration file path.
-  - Parameters from Mailgun.
-- Investigate if serverless allows to configure the files to be pushed to lambda function in order to avoid heavy ones.
-- Move customization for emailing to guarantee easier access.
-- Remove AWS configuration from aws_services.
-- Write more tests.
+- Create a config file to customize the email text and subject.
+
+## Testing:
+
+- Clone the project: **git clone https://github.com/leobruekers/serverlessAPIProject.git**
+- run: **npm test**
 
 ## Deploying:
 
 - Clone the project: **git clone https://github.com/leobruekers/serverlessAPIProject.git**
 - Follow the tutorial to install and configure serverless: **https://www.serverless.com/framework/docs/getting-started/**
-- run: **npm test** and download the required libraries
-- run **serverless deploy**
+- Install and configure AWS as sollowing:
+  - AWS config file:
+    ```
+    [default]
+    region=us-east-1
+    output=json
+    ```
+  - AWS credentials file:
+    ```
+    [default]
+    aws_access_key_id=<YOUR_AWS_ACCESS_KEY>
+    aws_secret_access_key=<YOUR_AWS_SECRET_ACCESS_KEY>
+    ```
+- run: **npm run deploy -- <YOUR_MAILGUN_API_KEY> <YOUR_MAILGUN_DOMAIN>**
+
+**PS: Ensure that you are using the same aws_region on your serverless.yml file and on your AWS config file**
 
 ## Using:
 
