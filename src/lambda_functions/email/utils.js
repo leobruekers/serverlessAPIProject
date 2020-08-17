@@ -6,7 +6,6 @@ module.exports.sendTickersViaEmail = async function () {
   const region = process.env.AWS_REGION;
   console.log(region);
   const awsServices = new AWSServices(region);
-  console.log("Aqui");
   console.log(awsServices);
   const averagePrice = await awsServices.callLambdaFunction(
     process.env.GET_AVERAGE_TICKER_FN_NAME
@@ -18,7 +17,9 @@ module.exports.sendTickersViaEmail = async function () {
     console.log(price);
 
     const api_key = process.env.MAILGUN_API_KEY;
+    console.log("Mailgun API Key: " + api_key);
     const domain = process.env.MAILGUN_DOMAIN;
+    console.log("Mailgun Domain: " + domain);
     const sender = process.env.SENDER;
     const recipients = process.env.RECIPIENTS;
     const subject = process.env.SUBJECT;
@@ -43,12 +44,12 @@ module.exports.sendTickersViaEmail = async function () {
 };
 
 async function sendEmail(
-  api_key = "d56fb7f21015124aa70e65a093389faf-07e45e2a-9a7919ee",
-  domain = "sandbox9c37befddffb4b4f816031a1996a2578.mailgun.org",
-  sender = "Leo <leobruekers@gmail.com>",
-  recipients = "leobruekers@gmail.com",
-  subject = "BTC average price",
-  text = "Base text"
+  api_key = isRequired("The api_key is required to send email."),
+  domain = isRequired("The domain is required to send email."),
+  sender = isRequired("The sender is required to send email."),
+  recipients = isRequired("At least one recipients is required to send email."),
+  subject = "",
+  text = ""
 ) {
   try {
     const mailgun = require("mailgun-js")({ apiKey: api_key, domain: domain });
@@ -74,4 +75,9 @@ async function sendEmail(
     console.log("Error while sending email with mailgun");
     console.log(error);
   }
+}
+
+function isRequired(message) {
+  console.log(message);
+  throw Error("Required value not found.");
 }
