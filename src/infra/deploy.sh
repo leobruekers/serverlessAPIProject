@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+jest
 echo "Mailgun API Key: $1"
 echo "Mailgun Domain: $2"
 if [ "$1" != "-not_update" ]; then
