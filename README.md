@@ -71,7 +71,7 @@ Serverless.yml is the file responsible for API and lambda function management on
 
 - Clone the project: **git clone https://github.com/leobruekers/serverlessAPIProject.git**
 - Follow the tutorial to install and configure serverless: **https://www.serverless.com/framework/docs/getting-started/**
-- Install and configure AWS as sollowing:
+- Install and configure AWS as following:
   - AWS config file:
     ```
     [default]
