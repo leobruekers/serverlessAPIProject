@@ -84,6 +84,10 @@ Serverless.yml is the file responsible for API and lambda function management on
     aws_access_key_id=<YOUR_AWS_ACCESS_KEY>
     aws_secret_access_key=<YOUR_AWS_SECRET_ACCESS_KEY>
     ```
+- run: npm install serverless-plugin-include-dependencies --save-dev
+
+- Navigate to serverlessAPIProject folder
+
 - run: **npm run deploy -- <YOUR_MAILGUN_API_KEY> <YOUR_MAILGUN_DOMAIN> \[-r\]**
 
   ** If you don't want to update your SSM variables you can pass **-not_update** instead of a value. i.e. **npm run deploy -- -not_update -not_update\*\*
